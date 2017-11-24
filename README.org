@@ -1,0 +1,36 @@
+#+STARTUP: showall indent
+
+* Windows Utilities
+
+Windows で動作するユティリティコマンド群です。
+
+** ■ winactivate
+
+開いているウィンドウをアクティベートするためのコマンドです。
+
+*** 使用方法
+
+winactivate.exe filename
+
+*** 使用例
+
+winactivate.exe foo.txt
+
+この場合、以下の正規表現にマッチするタイトルを持つウィンドウがあれば、アクティベートされます。
+
+#+BEGIN_EXAMPLE
+(^| )(foo\.txt|foo)( |$)
+#+END_EXAMPLE
+
+該当するウィンドウがあった場合は 0 を、なかった場合は 1 を返します。
+
+*** その他
+
+AutoHotKey_L のスクリプトとして作成していますので、Unicode 版のコンパイラでコンパイルして
+お使いください。
+
+一応、Unicode 32bit でコンパイルしたバイナリを添付しています。32bit でコンパイルしていますので、
+64bit 環境でも利用できます。
+
+Cygwin もしくは WSL の sglstart コマンドから利用することを想定していますので、それぞれの環境の
+コマンドパスが通ったディレクトリに格納してお使いください。
