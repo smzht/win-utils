@@ -4,6 +4,27 @@
 
 Windows で動作するユティリティコマンド群です。
 
+** ■ wslclient
+
+VcXsrv X サーバで動作している Windows Subsystem for Linux の emacs で利用可能な emacsclient コマンドです。
+
+WSL の emacsclient を起動する他、emacs を開いている X サーバの画面をアクティベートする機能をサポートしています。
+
+*** 使用方法
+
+wslclient.exe filename
+
+*** その他
+
+AutoHotKey_L のスクリプトとして作成していますので、Unicode 版のコンパイラでコンパイルして
+お使いください。
+
+一応、Unicode 64bit でコンパイルしたバイナリを添付しています。
+
+詳しくは、以下の 21）の説明を参照してください。
+
+- [[https://www49.atwiki.jp/ntemacs/pages/69.html][WSL で emacs を使うための設定]]
+
 ** ■ winactivate
 
 開いているウィンドウをアクティベートするためのコマンドです。
