@@ -8,6 +8,9 @@ Windows で動作するユティリティコマンド群です。
 
 開いているウィンドウをアクティベートするためのコマンドです。
 
+Cygwin もしくは WSL の sglstart コマンドから利用することを目的として作成しました。
+sglstart コマンドと同じディレクトリに格納してお使いください。
+
 *** 使用方法
 
 winactivate.exe filename
@@ -32,5 +35,7 @@ AutoHotKey_L のスクリプトとして作成していますので、Unicode �
 一応、Unicode 32bit でコンパイルしたバイナリを添付しています。32bit でコンパイルしていますので、
 64bit 環境でも利用できます。
 
-Cygwin もしくは WSL の sglstart コマンドから利用することを想定していますので、それぞれの環境の
-コマンドパスが通ったディレクトリに格納してお使いください。
+sglstart コマンドについては、以下を参照してください。
+
+- [[https://www49.atwiki.jp/ntemacs/pages/60.html][singleton な動きをする cygstart 的コマンドを使うための設定 （Cygwin版）]]
+- [[https://www49.atwiki.jp/ntemacs/pages/63.html][singleton な動きをする cygstart 的コマンドを使うための設定 （WSL版）]]
