@@ -7,7 +7,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetTitleMatchMode, 2 ; 中間一致
 WinActivate, emacs ahk_exe vcxsrv.exe
 
-; for Aniversary Update or Creators Update
+; for Anniversary Update or Creators Update
 ; RunWait, bash -c "emacsclient '%1%'",, Hide
 ; RunWait, bash -c "emacsclient -q -n '%1%'",, Hide
 
