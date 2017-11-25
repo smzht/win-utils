@@ -32,8 +32,7 @@ winactivate.exe foo.txt
 AutoHotKey_L のスクリプトとして作成していますので、Unicode 版のコンパイラでコンパイルして
 お使いください。
 
-一応、Unicode 32bit でコンパイルしたバイナリを添付しています。32bit でコンパイルしていますので、
-64bit 環境でも利用できます。
+一応、Unicode 64bit でコンパイルしたバイナリを添付しています。
 
 sglstart コマンドについては、以下を参照してください。
 
