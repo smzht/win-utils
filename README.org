@@ -12,7 +12,9 @@ WSL の emacsclient を起動する他、emacs を開いている X サーバの
 
 *** 使用方法
 
+#+BEGIN_EXAMPLE
 wslclient.exe filename
+#+END_EXAMPLE
 
 コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、
 wslconfig /s コマンドで連携する（emacsclient をコールする）ディストリビューションを指定してください。
@@ -41,11 +43,15 @@ sglstart コマンドと同じディレクトリに格納してお使いくだ�
 
 *** 使用方法
 
+#+BEGIN_EXAMPLE
 winactivate.exe filename
+#+END_EXAMPLE
 
 *** 使用例
 
+#+BEGIN_EXAMPLE
 winactivate.exe foo.txt
+#+END_EXAMPLE
 
 この場合、以下の正規表現にマッチするタイトルを持つウィンドウがあれば、アクティベートされます。
 
