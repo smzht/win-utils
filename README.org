@@ -24,7 +24,7 @@ wslconfig /s コマンドで連携する（emacsclient をコールする）デ�
 Windows 10 Fall Creators Update より前の Update で WSL を利用している場合は、wslclient.ahk のコメントを参考として
 必要な行を有効にし、再コンパイルしてご利用ください。
 
-emacs 側に必要となる設定は、以下の 21）の説明を参照してください。
+emacs 側に必要となる設定は、以下の 21）、22）の説明を参照してください。
 
 - [[https://www49.atwiki.jp/ntemacs/pages/69.html][WSL で emacs を使うための設定]]
 
