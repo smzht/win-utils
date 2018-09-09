@@ -7,8 +7,8 @@ filename1 = %1%
 filename2 := RegExReplace(filename1, "\.[^.]+$", "")
 
 ; http://ahkwiki.net/RegEx
-filename1 := RegExReplace(filename1, "[.*?+[{|()^$\\]", "\$0") 
-filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0") 
+filename1 := RegExReplace(filename1, "[.*?+[{|()^$\\]", "\$0")
+filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0")
 
 #WinActivateForce
 SetTitleMatchMode, RegEx
