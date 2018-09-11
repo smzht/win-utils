@@ -55,7 +55,8 @@ winactivate.exe filename
 winactivate.exe foo.txt
 #+END_EXAMPLE
 
-この場合、以下の正規表現にマッチするタイトルを持つウィンドウがあれば、アクティベートされます。
+この場合、以下の正規表現にマッチするタイトルを持つアクティブではないウィンドウがあれば、
+アクティベートされます。
 
 #+BEGIN_EXAMPLE
 (^| )(foo\.txt|foo)( |$)
@@ -65,7 +66,8 @@ winactivate.exe foo.txt
 
 *** その他
 
-AutoHotKey_L のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルしたバイナリも登録しています。
+AutoHotKey のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルした
+バイナリも登録しています。
 
 sglstart コマンドについては、以下を参照してください。
 
