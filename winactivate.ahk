@@ -13,7 +13,7 @@ filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0")
 #WinActivateForce
 SetTitleMatchMode, RegEx
 
-ifWinExist, (^| )(%filename1%|%filename2%)( |$)
+IfWinExist, (^| )(%filename1%|%filename2%)( |$)
 {
   WinActivate
   Exit, 0
