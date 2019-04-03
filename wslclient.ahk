@@ -7,10 +7,10 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetTitleMatchMode, 2 ; 中間一致
 WinActivate, emacs ahk_exe vcxsrv.exe
 
-; for Anniversary Update or Creators Update
+; for Windows 10 1607 or 1703
 ; RunWait, bash -c "emacsclient '%1%'",, Hide
 ; RunWait, bash -c "emacsclient -q -n '%1%'",, Hide
 
-; for Fall Creators Update or later
+; for Windows 10 1709 or later
 ; RunWait, wsl emacsclient '%1%',, Hide
 RunWait, wsl emacsclient -q -n '%1%',, Hide
