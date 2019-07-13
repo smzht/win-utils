@@ -13,4 +13,5 @@ WinActivate, emacs ahk_exe vcxsrv.exe
 
 ; for Windows 10 1709 or later
 ; RunWait, wsl emacsclient '%1%',, Hide
+; RunWait, wsl emacsclient -a "emacs -d localhost:0.0" -q -n '%1%',, Hide
 RunWait, wsl emacsclient -q -n '%1%',, Hide
