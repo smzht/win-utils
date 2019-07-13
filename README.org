@@ -30,10 +30,11 @@ emacs 側に必要となる設定は、以下の説明を参照してくださ�
 
 *** その他
 
-AutoHotKey_L のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルしたバイナリも登録しています。
+AutoHotKey_L（v1.1系）のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルしたバイナリも登録しています。
 
 AutoHotKey については、以下を参照してください。
 
+- https://www.autohotkey.com/
 - https://so-zou.jp/software/tool/system/auto-hot-key/introduction/
 - http://ahkwiki.net/Top
 
