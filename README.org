@@ -64,14 +64,9 @@ wslclient.exe filename
 コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、
 wslconfig /s コマンドで連携する（emacsclient をコールする）ディストリビューションを指定してください。
 
-emacs 側に必要となる設定は、以下の説明を参照してください。
+emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
 
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
-
-以下の方法で wslclient.exe のショートカットを SendTo フォルダに作成しておくと、explorer から
-ファイルやフォルダを容易に開けるようになります。
-
-- https://www.atmarkit.co.jp/ait/articles/1109/30/news131.html
 
 ** ■ winactivate
 
