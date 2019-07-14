@@ -21,6 +21,8 @@ Else
 
         ; for Fall Creators Update and later
         RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n '%1%',, Hide
+
+        WinMaximize, emacs ahk_exe vcxsrv.exe
 }
 
 WinActivate, emacs ahk_exe vcxsrv.exe
