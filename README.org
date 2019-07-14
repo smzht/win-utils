@@ -68,6 +68,11 @@ emacs 側に必要となる設定は、以下の説明を参照してくださ�
 
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
 
+以下の方法で wslclient.exe のショートカットを SendTo フォルダに作成しておくと、explorer から
+ファイルやフォルダを容易に開けるようになります。
+
+- https://www.atmarkit.co.jp/ait/articles/1109/30/news131.html
+
 ** ■ winactivate
 
 開いているウィンドウをアクティベートするためのコマンドです。
