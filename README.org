@@ -7,7 +7,7 @@ Windows で動作するユティリティコマンド群です。
 WSL からコマンドを利用する場合には、格納したフォルダもしくはそのフォルダへのシンボリックリンクに
 コマンドパスを通してお使いください。
 
-** ■ wslemacs-daemon
+** ■ wslemacs-start
 
 WSL emacs をデーモンモードで起動するためのコマンドです。次に紹介している wslclient を利用する
 ために作成しました。
@@ -17,10 +17,10 @@ Startup フォルダに格納するか、ショートカットを格納してご
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslemacs-daemon.exe
+wslemacs-start.exe
 #+END_EXAMPLE
 
-wslemacs-daemon.ahk を見ていただくと分かる通り、emacs はログインシェルかつインタラクティブ
+wslemacs-start.ahk を見ていただくと分かる通り、emacs はログインシェルかつインタラクティブ
 モードで起動した bash から起動するようにしています。これは、環境変数などが極力設定された
 状態で emacs を立ち上げるようにするためです。bash 起動時にインタラクティブな応答（例えば、
 keychain のパスフレーズの入力など）があるとコマンドが正常に起動できませんので、ご留意ください。
