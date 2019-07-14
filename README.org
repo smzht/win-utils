@@ -27,6 +27,16 @@ keychain のパスフレーズの入力など）があるとコマンドが正�
 そのような応答が必要な場合は、OS 起動後一回のみ、WSL のコンソールを立ち上げ、emacs --daemon
 コマンドを使って起動するようにしてください。
 
+** ■ wslemacs-stop
+
+WSL emacs を終了するためのコマンドです。
+
+*** 使用方法
+
+#+BEGIN_EXAMPLE
+wslemacs-stop.exe
+#+END_EXAMPLE
+
 ** ■ wslclient
 
 VcXsrv X サーバで動作している Windows Subsystem for Linux の emacs と連携可能な emacsclient コマンドです。
