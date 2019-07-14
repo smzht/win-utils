@@ -3,13 +3,23 @@
 * Windows Utilities
 
 Windows で動作するユティリティコマンド群です。
+
+本コマンドは AutoHotKey_L（v1.1系）のスクリプトとして作成しています。
+AutoHotKey については、以下を参照してください。
+
+- https://www.autohotkey.com/
+- https://so-zou.jp/software/tool/system/auto-hot-key/introduction/
+- http://ahkwiki.net/Top
+
+Unicode 64bit のコンパイラでコンパイルしたバイナリも登録しています。
+
 全てのコマンドは、DrvFs ファイルシステム上のフォルダに格納する必要があります。
 WSL からコマンドを利用する場合には、格納したフォルダもしくはそのフォルダへのシンボリックリンクに
 コマンドパスを通してお使いください。
 
 ** ■ wslemacs-start
 
-WSL emacs をデーモンモードで起動するためのコマンドです。次に紹介している wslclient を利用する
+WSL emacs をデーモンモードで起動するためのコマンドです。以降に紹介している wslclient を利用する
 ために作成しました。
 
 Startup フォルダに格納するか、ショートカットを格納してご利用ください。
@@ -60,16 +70,6 @@ emacs 側に必要となる設定は、以下の説明を参照してくださ�
 
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
 
-*** その他
-
-AutoHotKey_L（v1.1系）のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルしたバイナリも登録しています。
-
-AutoHotKey については、以下を参照してください。
-
-- https://www.autohotkey.com/
-- https://so-zou.jp/software/tool/system/auto-hot-key/introduction/
-- http://ahkwiki.net/Top
-
 ** ■ winactivate
 
 開いているウィンドウをアクティベートするためのコマンドです。
@@ -98,9 +98,6 @@ winactivate.exe foo.txt
 該当するウィンドウがあった場合は 0 を、なかった場合は 1 を返します。
 
 *** その他
-
-AutoHotKey のスクリプトとして作成しています。Unicode 64bit のコンパイラでコンパイルした
-バイナリも登録しています。
 
 sglstart コマンドについては、以下を参照してください。
 
