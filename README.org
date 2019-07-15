@@ -58,7 +58,7 @@ emacs は事前にデーモンモードで起動しておくか、普通に emac
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslclient.exe filename
+wslclient.exe [filename]
 #+END_EXAMPLE
 
 コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、
@@ -67,6 +67,9 @@ wslconfig /s コマンドで連携する（emacsclient をコールする）デ�
 emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
 
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
+
+wslclient.exe に引数を指定しない場合でも emacs のフレームを開くようにしています。wslclient.exe のショートカット
+をデスクトップ等に置いておけば、ダブルクリックで emacs のフレームを開くことができます。
 
 ** ■ winactivate
 
