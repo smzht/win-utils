@@ -16,12 +16,12 @@ SetTitleMatchMode, RegEx
 WinGet, id, list, (^| )(%filename1%|%filename2%)( |$)
 Loop, %id%
 {
-  this_id := id%A_Index%
-  IfWinNotActive, ahk_id %this_id%
-  {
-    WinActivate, ahk_id %this_id%
-    Exit, 0
-  }
+        this_id := id%A_Index%
+        IfWinNotActive, ahk_id %this_id%
+        {
+                WinActivate, ahk_id %this_id%
+                Exit, 0
+        }
 }
 
 Exit, 1
