@@ -3,4 +3,4 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 
-RunWait, wsl bash -l -i -c "emacs --fg-daemon",, Hide
+RunWait, wsl bash -l -i -c "cd ~; emacs --fg-daemon",, Hide
