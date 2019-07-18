@@ -30,7 +30,7 @@ Else
 
         If (ErrorLevel <> 0)
         {
-                MsgBox, emacsが起動していません！
+                MsgBox, emacs が起動していません！
                 Return
         }
 
