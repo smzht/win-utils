@@ -23,7 +23,7 @@ Else
         If (ErrorLevel <> 0)
         {
                 MsgBox, emacs が起動していません！
-                Exit, 1
+                Return
         }
 
         WinMaximize, emacs ahk_exe vcxsrv.exe
