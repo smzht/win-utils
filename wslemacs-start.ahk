@@ -3,10 +3,15 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 
-OnExit, WatchExit
+OnExit, ExitFunc
 
 RunWait, wsl bash -l -i -c "cd ~; emacs --fg-daemon",, Hide
-Return
+ExitApp
 
-WatchExit:
+ExitFunc:
         Run, wsl emacsclient -e "(kill-emacs)",, Hide
+        ExitApp
+
+!e::
+        Run, wslclient.exe,, Hide
+        Return
