@@ -9,15 +9,13 @@ SetTitleMatchMode, 2 ; 中間一致
 
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
-        If (%0% == 0)
-                RunWait, wsl emacsclient -q -n -e 't',, Hide
-        Else
+        If (%0% <> 0)
                 RunWait, wsl emacsclient -q -n '%1%',, Hide
 }
 Else
 {
         If (%0% == 0)
-                RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n -e 't',, Hide
+                RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
         Else
                 RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n '%1%',, Hide
 
