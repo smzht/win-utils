@@ -7,12 +7,12 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #UseHook
 SetTitleMatchMode, 2 ; 中間一致
 
-OnExit, ExitFunc
+OnExit, ExitSub
 
 RunWait, wsl bash -l -i -c "cd ~; emacs --fg-daemon",, Hide
 ExitApp
 
-ExitFunc:
+ExitSub:
         Run, wsl emacsclient -e "(kill-emacs)",, Hide
         ExitApp
 
