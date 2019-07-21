@@ -20,10 +20,7 @@ Else
         If (%0% == 0)
                 RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
         Else
-        {
-                RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n -e "(delete-other-windows)",, Hide
                 RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n '%1%',, Hide
-        }
 
         If (ErrorLevel <> 0)
         {
