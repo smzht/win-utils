@@ -11,7 +11,7 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 {
         If (%0% <> 0)
         {
-                RunWait, wsl emacsclient -q -n -e "(delete-other-windows)",, Hide
+                ; RunWait, wsl emacsclient -q -n -e "(delete-other-windows)",, Hide
                 RunWait, wsl emacsclient -q -n '%1%',, Hide
         }
 }
