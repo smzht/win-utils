@@ -9,7 +9,7 @@ SetTitleMatchMode, 2 ; 中間一致
 
 OnExit, ExitSub
 
-RunWait, wsl bash -l -i -c "cd ~; emacs --fg-daemon",, Hide
+RunWait, wsl bash -l -i -c "cd ~; exec emacs --fg-daemon",, Hide
 ExitApp
 
 ExitSub:
