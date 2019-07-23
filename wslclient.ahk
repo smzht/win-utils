@@ -7,9 +7,11 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #WinActivateForce
 SetTitleMatchMode, 2 ; 中間一致
 
+ArgCount=%0%
+
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
-        If (%0% <> 0)
+        If ArgCount <> 0
         {
                 ; RunWait, wsl emacsclient -q -n -e "(delete-other-windows)",, Hide
                 RunWait, wsl emacsclient -q -n '%1%',, Hide
@@ -17,12 +19,12 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 }
 Else
 {
-        If (%0% == 0)
+        If ArgCount = 0
                 RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
         Else
                 RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n '%1%',, Hide
 
-        If (ErrorLevel <> 0)
+        If ErrorLevel <> 0
         {
                 MsgBox, emacs が起動していません！
                 Exit

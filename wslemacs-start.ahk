@@ -13,7 +13,8 @@ RunWait, wsl bash -l -i -c "cd ~; exec emacs --fg-daemon",, Hide
 ExitApp
 
 ExitSub:
-        Run, wsl emacsclient -e "(kill-emacs)",, Hide
+        If A_ExitReason <> Exit
+                Run, wsl emacsclient -e "(kill-emacs)",, Hide
         ExitApp
 
 !e::
