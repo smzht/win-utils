@@ -64,8 +64,9 @@ emacs は事前にデーモンモードで起動しておくか、普通に emac
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslclient.exe [filename] # for Windows
-wslclient [filename]     # for WSL
+wslclient.exe [filename]   # no-wait version for Windows
+wslclient-w.exe [filename] # wait version for Windows
+wslclient [-w] [filename]  # for WSL
 #+END_EXAMPLE
 
 コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、

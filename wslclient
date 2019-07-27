@@ -5,16 +5,21 @@ command_name=$(basename "$0")
 
 function usage_exit() {
     cat << EOF >&2
-Usage: $command_name [file]
+Usage: $command_name [-w] [file]
        $command_name -h
 EOF
     exit $1
 }
 
-while getopts :h opt; do
+wait_flg=0
+
+while getopts :hw opt; do
     case $opt in
         h)
             usage_exit 0
+            ;;
+        w)
+            wait_flg=1
             ;;
         \?)
             usage_exit 2
@@ -34,5 +39,9 @@ else
     # シンボリックリンクを解決しない絶対パスを取得する（このため、readlink を使っていない）
     file_name=$(echo "$(cd $(dirname "$1") && pwd)/$(basename "$1")" | sed "s_^//_/_")
 
-    wslclient.exe "$file_name"
+    if [ $wait_flg -eq 0 ]; then
+        wslclient.exe "$file_name"
+    else
+        wslclient-w.exe "$file_name"
+    fi
 fi
