@@ -9,18 +9,9 @@ SetTitleMatchMode, 2 ; 中間一致
 
 ArgCount=%0%
 
-IfWinExist, emacs ahk_exe vcxsrv.exe
+IfWinNotExist, emacs ahk_exe vcxsrv.exe
 {
-        If ArgCount <> 0
-                RunWait, wsl emacsclient -q '%1%',, Hide
-}
-Else
-{
-        If ArgCount = 0
-                RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q,, Hide
-        Else
-                RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q '%1%',, Hide
-
+        RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
         If ErrorLevel <> 0
         {
                 MsgBox, emacs が起動していません！
@@ -31,3 +22,6 @@ Else
 }
 
 WinActivate, emacs ahk_exe vcxsrv.exe
+
+If ArgCount <> 0
+        RunWait, wsl emacsclient -q '%1%',, Hide
