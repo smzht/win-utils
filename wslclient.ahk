@@ -12,10 +12,7 @@ ArgCount=%0%
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
         If ArgCount <> 0
-        {
-                ; RunWait, wsl emacsclient -q -n -e "(delete-other-windows)",, Hide
                 RunWait, wsl emacsclient -q -n '%1%',, Hide
-        }
 }
 Else
 {
