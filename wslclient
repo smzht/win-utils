@@ -37,7 +37,7 @@ if [ $# -eq 0 ]; then
     wslclient.exe
 else
     # シンボリックリンクを解決しない絶対パスを取得する（このため、readlink を使っていない）
-    file_name=$(echo "$(cd $(dirname "$1") && pwd)/$(basename "$1")" | sed "s_^//_/_")
+    file_name=$(echo "$(cd $(dirname "$1") && pwd)/$(basename "$1")" | sed -r "s_^/+_/_")
 
     if [ $wait_flg -eq 0 ]; then
         wslclient.exe "$file_name"
