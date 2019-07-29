@@ -5,7 +5,6 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 
 #WinActivateForce
-SetTitleMatchMode, 2 ; 中間一致
 
 ArgCount=%0%
 

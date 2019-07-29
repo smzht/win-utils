@@ -5,7 +5,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #InstallKeybdHook
 #UseHook
-SetTitleMatchMode, 2 ; 中間一致
 SetWorkingDir %A_ScriptDir%
 
 OnExit, ExitSub
