@@ -8,6 +8,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 ArgCount=%0%
 
+WinGet, active_id, ID, A
+
 IfWinNotExist, emacs ahk_exe vcxsrv.exe
 {
         RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
@@ -23,4 +25,8 @@ IfWinNotExist, emacs ahk_exe vcxsrv.exe
 WinActivate, emacs ahk_exe vcxsrv.exe
 
 If ArgCount <> 0
+{
         RunWait, wsl emacsclient -q '%1%',, Hide
+        WinActivate, ahk_id %active_id%
+        WinMinimize, emacs ahk_exe vcxsrv.exe ; 不要であれば無効化してください
+}
