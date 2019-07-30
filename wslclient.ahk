@@ -10,7 +10,7 @@ ArgCount=%0%
 
 IfWinNotExist, emacs ahk_exe vcxsrv.exe
 {
-        RunWait, wsl DISPLAY=localhost:0.0 emacsclient -c -q -n,, Hide
+        RunWait, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
         If ErrorLevel <> 0
         {
                 MsgBox, emacs が起動していません！
