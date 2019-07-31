@@ -14,10 +14,10 @@ filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0")
 #WinActivateForce
 SetTitleMatchMode, RegEx
 
-WinGet, id, list, (^| )(%filename1%|%filename2%)( |$)
-Loop, %id%
+WinGet, ids, list, (^| )(%filename1%|%filename2%)( |$)
+Loop, %ids%
 {
-        this_id := id%A_Index%
+        this_id := ids%A_Index%
         IfWinNotActive, ahk_id %this_id%
         {
                 WinActivate, ahk_id %this_id%
