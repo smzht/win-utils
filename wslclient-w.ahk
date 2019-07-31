@@ -32,7 +32,7 @@ If ArgCount <> 0
         Loop, %ids%
         {
                 index := ids - A_Index + 1
-                StringTrimLeft, this_id, ids%index%, 0
+                this_id := ids%index%
                 WinGet, stat, MinMax, ahk_id %this_id%
                 If stat <> -1
                         WinActivate, ahk_id %this_id%
