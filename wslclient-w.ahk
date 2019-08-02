@@ -8,8 +8,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 ArgCount=%0%
 
-WinGet, pid, PID, A
-WinGet, ids, List, ahk_pid %pid%
+WinGet, active_pid, PID, A
 
 IfWinNotExist, emacs ahk_exe vcxsrv.exe
 {
@@ -29,6 +28,7 @@ If ArgCount <> 0
 {
         RunWait, wsl emacsclient -q '%1%',, Hide
 
+        WinGet, ids, List, ahk_pid %active_pid%
         Loop, %ids%
         {
                 index := ids - A_Index + 1
