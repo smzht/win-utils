@@ -8,19 +8,29 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 ArgCount=%0%
 
-IfWinNotExist, emacs ahk_exe vcxsrv.exe
+IfWinExist, emacs ahk_exe vcxsrv.exe
 {
-        RunWait, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
-        If ErrorLevel <> 0
+        WinActivate
+        If ArgCount <> 0
+                RunWait, wsl emacsclient -q -n '%1%',, Hide
+}
+Else
+{
+        If ArgCount <> 0
+                Run, wsl emacsclient -c -q -n -d localhost:0.0 '%1%',, Hide, pid
+        Else
+                Run, wsl emacsclient -c -q -n -d localhost:0.0,, Hide, pid
+
+        Loop, 4
         {
-                MsgBox, emacs が起動していません！
-                Exit
+                Sleep, 500
+                IfWinExist, emacs ahk_exe vcxsrv.exe
+                {
+                        WinActivate
+                        Process, WaitClose, %pid%
+                        Exit
+                }
         }
 
-        WinMaximize, emacs ahk_exe vcxsrv.exe
+        MsgBox, emacs が起動していません！
 }
-
-WinActivate, emacs ahk_exe vcxsrv.exe
-
-If ArgCount <> 0
-        RunWait, wsl emacsclient -q -n '%1%',, Hide
