@@ -17,17 +17,16 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 Else
 {
         If ArgCount <> 0
-                Run, wsl emacsclient -c -q -n -d localhost:0.0 '%1%',, Hide, pid
+                Run, wsl emacsclient -c -q -n -d localhost:0.0 '%1%',, Hide
         Else
-                Run, wsl emacsclient -c -q -n -d localhost:0.0,, Hide, pid
+                Run, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
 
         Loop, 4
         {
-                Sleep, 500
+                Sleep, 1000
                 IfWinExist, emacs ahk_exe vcxsrv.exe
                 {
                         WinActivate
-                        Process, WaitClose, %pid%
                         Exit
                 }
         }
