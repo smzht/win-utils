@@ -8,8 +8,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 ArgCount=%0%
 
-WinGet, active_id, ID, A
-
 If ArgCount <> 0
 {
         IfWinActive, emacs ahk_exe vcxsrv.exe
@@ -17,11 +15,10 @@ If ArgCount <> 0
                 RunWait, wsl emacsclient -q -d localhost:0.0 '%1%',, Hide
                 If ErrorLevel <> 0
                         MsgBox, emacs が起動していません！
-                Else
-                        WinActivate, ahk_id %active_id%
         }
         Else
         {
+                WinGet, active_id, ID, A
                 Run, wsl emacsclient -c -q -d localhost:0.0 '%1%',, Hide, pid
 
                 Loop, 4
