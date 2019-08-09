@@ -12,7 +12,7 @@ If ArgCount <> 0
 {
         IfWinActive, emacs ahk_exe vcxsrv.exe
         {
-                RunWait, wsl emacsclient -q -d localhost:0.0 '%1%',, Hide
+                RunWait, wsl emacsclient -q '%1%',, Hide
                 If ErrorLevel <> 0
                         MsgBox, emacs が起動していません！
         }
