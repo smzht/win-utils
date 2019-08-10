@@ -21,15 +21,9 @@ Else
         Else
                 Run, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
 
-        Loop, 4
-        {
-                Sleep, 1000
-                IfWinExist, emacs ahk_exe vcxsrv.exe
-                {
-                        WinActivate
-                        Exit
-                }
-        }
-
-        MsgBox, emacs が起動していません！
+        WinWait, emacs ahk_exe vcxsrv.exe,, 4
+        If ErrorLevel = 0
+                WinActivate
+        Else
+                MsgBox, emacs が起動していません！
 }

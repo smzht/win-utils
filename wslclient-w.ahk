@@ -21,18 +21,15 @@ If ArgCount <> 0
                 WinGet, active_id, ID, A
                 Run, wsl emacsclient -c -q -d localhost:0.0 '%1%',, Hide, pid
 
-                Loop, 4
+                Sleep, 1000
+                WinWait, emacs ahk_exe vcxsrv.exe,, 3
+                If ErrorLevel = 0
                 {
-                        Sleep, 1000
-                        IfWinExist, emacs ahk_exe vcxsrv.exe
-                        {
-                                WinActivate
-                                Process, WaitClose, %pid%
-                                WinActivate, ahk_id %active_id%
-                                Exit
-                        }
+                        WinActivate
+                        Process, WaitClose, %pid%
+                        WinActivate, ahk_id %active_id%
                 }
-
-                MsgBox, emacs が起動していません！
+                Else
+                        MsgBox, emacs が起動していません！
         }
 }
