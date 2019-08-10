@@ -79,6 +79,10 @@ emacs や Windows 側に必要となる設定は、以下の説明を参照し�
 wslemacs-start.exe で emacs を起動している場合は、Alt+e で本コマンドを起動することもできます。
 （wslclient.exe は、wslemacs-start.exe と 同じフォルダに格納しておく必要があります。）
 
+wslclient.exe は既に emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
+また、wslclient-w.exe は emacs のフレームから起動された時はそのフレームに表示しますが、
+それ以外の場合は常に新しいフレームを作って表示する仕様としています。
+
 ** ■ winactivate
 
 開いているウィンドウをアクティベートするためのコマンドです。
