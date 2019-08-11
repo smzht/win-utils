@@ -17,6 +17,9 @@ Unicode 64bit のコンパイラでコンパイルしたバイナリも登録し
 WSL からコマンドを利用する場合には、格納したフォルダもしくはそのフォルダへのシンボリックリンクに
 コマンドパスを通してお使いください。
 
+コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、
+wslconfig /s コマンドで連携する（emacsclient をコールする）ディストリビューションを指定してください。
+
 ** ■ wslemacs-start
 
 WSL emacs をデーモンモードで起動するためのコマンドです。以降に紹介している wslclient を利用する
@@ -72,9 +75,6 @@ wslclient.exe [filename]   # no-wait version for Windows
 wslclient-w.exe [filename] # wait version for Windows
 wslclient [-w] [filename]  # for WSL
 #+END_EXAMPLE
-
-コマンドの中で wsl.exe を使っています。複数の Linux のディストリビューションをインストールしている場合は、
-wslconfig /s コマンドで連携する（emacsclient をコールする）ディストリビューションを指定してください。
 
 emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
 
