@@ -41,7 +41,9 @@ HideConsole:
         Return
 
 KillEmacs:
-        Run, wsl emacsclient -e "(kill-emacs)",, Hide
+        RunWait, wsl emacsclient -e "(kill-emacs)",, Hide
+        If ErrorLevel <> 0
+                MsgBox, emacs が起動していません！
         Return
 
 ExitSub:
