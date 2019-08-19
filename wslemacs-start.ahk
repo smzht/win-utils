@@ -10,37 +10,37 @@ SetWorkingDir %A_ScriptDir%
 OnExit, ExitSub
 
 Menu, Tray, NoStandard
-Menu, Tray, Add, EmacsClient
+Menu, Tray, Add, Open Emacs, OpenEmacs
 Menu, Tray, Add
-Menu, Tray, Add, ShowConsole
-Menu, Tray, Add, HideConsole
+Menu, Tray, Add, Show Console, ShowConsole
+Menu, Tray, Add, Hide Console, HideConsole
 Menu, Tray, Add
-Menu, Tray, Add, SendKillEmacs
+Menu, Tray, Add, Kill Emacs, KillEmacs
 
-Menu, Tray, Check, HideConsole
+Menu, Tray, Check, Hide Console
 
 RunWait, wsl bash -l -i -c "cd ~; exec emacs --fg-daemon",, Hide, pid
 ExitApp
 
-EmacsClient:
+OpenEmacs:
         Run, wslclient.exe,, Hide
         Return
 
 ShowConsole:
         WinShow, ahk_pid %pid%
         WinActivate, ahk_pid %pid%
-        Menu, Tray, Check, ShowConsole
-        Menu, Tray, UnCheck, HideConsole
+        Menu, Tray, Check, Show Console
+        Menu, Tray, UnCheck, Hide Console
         Return
 
 HideConsole:
         WinHide ahk_pid %pid%
         WinActivate, ahk_pid %pid%
-        Menu, Tray, UnCheck, ShowConsole
-        Menu, Tray, Check, HideConsole
+        Menu, Tray, UnCheck, Show Console
+        Menu, Tray, Check, Hide Console
         Return
 
-SendKillEmacs:
+KillEmacs:
         Run, wsl emacsclient -e "(kill-emacs)",, Hide
         Return
 
