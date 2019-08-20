@@ -16,14 +16,22 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 }
 Else
 {
-        If ArgCount <> 0
+        If ArgCount = 0
+        {
+                RunWait, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
+                If ErrorLevel = 0
+                        WinActivate, emacs ahk_exe vcxsrv.exe
+                Else
+                        MsgBox, emacs が起動していません！
+        }
+        Else
+        {
                 Run, wsl emacsclient -c -q -n -d localhost:0.0 '%1%',, Hide
-        Else
-                Run, wsl emacsclient -c -q -n -d localhost:0.0,, Hide
 
-        WinWait, emacs ahk_exe vcxsrv.exe,, 4
-        If ErrorLevel = 0
-                WinActivate
-        Else
-                MsgBox, emacs が起動していません！
+                WinWait, emacs ahk_exe vcxsrv.exe,, 4
+                If ErrorLevel = 0
+                        WinActivate
+                Else
+                        MsgBox, emacs が起動していません！
+        }
 }
