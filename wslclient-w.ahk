@@ -12,14 +12,14 @@ If ArgCount <> 0
 {
         IfWinActive, emacs ahk_exe vcxsrv.exe
         {
-                RunWait, wsl emacsclient -q '%1%',, Hide
+                RunWait, wsl emacsclient -q "%1%",, Hide
                 If ErrorLevel <> 0
                         MsgBox, emacs が起動していません！
         }
         Else
         {
                 WinGet, active_id, ID, A
-                Run, wsl emacsclient -c -q -d localhost:0.0 '%1%',, Hide, pid
+                Run, wsl emacsclient -c -q -d localhost:0.0 "%1%",, Hide, pid
 
                 Sleep, 1000
                 WinWait, emacs ahk_exe vcxsrv.exe,, 3
