@@ -5,7 +5,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 
 filename1 = %1%
-filename2 := RegExReplace(filename1, "\.[^.]+$", "")
+filename2 := RegExReplace(filename1, "(.)\.[^.]+$", "$1")
 
 ; http://ahkwiki.net/RegEx
 filename1 := RegExReplace(filename1, "[.*?+[{|()^$\\]", "\$0")
