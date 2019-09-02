@@ -12,7 +12,7 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 {
         WinActivate
         If ArgCount <> 0
-                RunWait, wsl emacsclient -q -n "%1%",, Hide
+                RunWait, wsl emacsclient -q -n '%1%',, Hide
 }
 Else
 {
@@ -26,7 +26,7 @@ Else
         }
         Else
         {
-                Run, wsl emacsclient -c -q -n -d localhost:0.0 "%1%",, Hide
+                Run, wsl emacsclient -c -q -n -d localhost:0.0 '%1%',, Hide
 
                 WinWait, emacs ahk_exe vcxsrv.exe,, 4
                 If ErrorLevel = 0
