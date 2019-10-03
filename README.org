@@ -22,7 +22,7 @@ wslconfig /s コマンドで連携する（emacsclient をコールする）デ�
 
 ** ■ wslemacs-start
 
-WSL emacs をデーモンモードで起動するためのコマンドです。以降に紹介している wslclient を利用する
+WSL Emacs をデーモンモードで起動するためのコマンドです。以降に紹介している wslclient を利用する
 ために作成しました。
 
 Startup フォルダに格納するか、ショートカットを格納してご利用ください。
@@ -33,13 +33,13 @@ Startup フォルダに格納するか、ショートカットを格納してご
 wslemacs-start.exe
 #+END_EXAMPLE
 
-wslemacs-start.ahk を見ていただくと分かる通り、emacs はログインシェルかつインタラクティブ
+wslemacs-start.ahk を見ていただくと分かる通り、Emacs はログインシェルかつインタラクティブ
 モードで起動した bash から起動するようにしています。これは、環境変数などが極力設定された
-状態で emacs が立ち上がるようにするためです。bash 起動時にインタラクティブな応答（例えば、
+状態で Emacs が立ち上がるようにするためです。bash 起動時にインタラクティブな応答（例えば、
 keychain や ssh-add 実行時のパスフレーズの入力など）があるとコマンドが正常に起動できません
 ので、ご留意ください。
 そのような応答が必要な場合は、WSL のコンソールを立ち上げた後、emacs --daemon コマンドを使って
-emacs を起動するようにしてください。
+Emacs を起動するようにしてください。
 
 なお、パスフレーズの入力を回避する方法としては、ssh-agent-wsl を使う方法があるようです。
 詳しくは、以下のサイトを参照してください。
@@ -48,7 +48,7 @@ emacs を起動するようにしてください。
 
 ** ■ wslemacs-stop
 
-WSL emacs を終了するためのコマンドです。
+WSL Emacs を終了するためのコマンドです。
 
 *** 使用方法
 
@@ -58,9 +58,9 @@ wslemacs-stop.exe
 
 ** ■ wslclient
 
-WSL emacs と連携可能な emacsclient コマンドです。
+WSL Emacs と連携可能な emacsclient コマンドです。
 
-emacs は事前にデーモンモードで起動しておくか、普通に emacs を立ち上げておいてください。
+Emacs は事前にデーモンモードで起動しておくか、普通に Emacs を立ち上げておいてください。
 
 また、Xサーバとして VcXsrv が起動している必要があります。
 
@@ -76,15 +76,15 @@ wslclient-w.exe [filename] # wait version for Windows
 wslclient [-w] [filename]  # for WSL
 #+END_EXAMPLE
 
-emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
+Emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
 
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
 
-wslemacs-start.exe で emacs を起動している場合は、Alt+e で本コマンドを起動することもできます。
+wslemacs-start.exe で Emacs を起動している場合は、Alt+e で本コマンドを起動することもできます。
 （wslclient.exe は、wslemacs-start.exe と 同じフォルダに格納しておく必要があります。）
 
-wslclient.exe は既に emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
-また、wslclient-w.exe は emacs のフレームから起動された時はそのフレームに表示しますが、
+wslclient.exe は既に Emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
+また、wslclient-w.exe は Emacs のフレームから起動された時はそのフレームに表示しますが、
 それ以外の場合は常に新しいフレームを作って表示する仕様としています。
 
 ** ■ winactivate
