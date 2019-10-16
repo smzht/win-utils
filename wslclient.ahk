@@ -14,9 +14,11 @@ options := "-q -n -d localhost:0.0"
 
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
-        WinActivate
         if argCount = 0
+        {
+                WinActivate
                 Exit
+        }
 }
 Else
         options .= " -c"
