@@ -6,23 +6,35 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #WinActivateForce
 
-ArgCount=%0%
+argCount = %0%
 
-If ArgCount <> 0
+If argCount > 0
 {
+        ; 外部からオプション -c を指定される可能性があるため、オプション -d も
+        ; デフォルトの設定としている
+        options := "-q -d localhost:0.0"
+
+        Loop, %argCount%
+        {
+                arg := %A_Index%
+                args := args . "'" . arg . "' "
+        }
+
         IfWinActive, emacs ahk_exe vcxsrv.exe
         {
-                RunWait, wsl emacsclient -q '%1%',, Hide
+                RunWait, wsl emacsclient %options% %args%,, Hide
                 If ErrorLevel <> 0
-                        MsgBox, emacs が起動していません！
+                        MsgBox, Emacs を開くことができません！
         }
         Else
         {
+                options .= " -c"
+
                 WinGet, active_id, ID, A
-                Run, wsl emacsclient -c -q -d localhost:0.0 '%1%',, Hide, pid
+                Run, wsl emacsclient %options% %args%,, Hide, pid
 
                 Sleep, 1000
-                WinWait, emacs ahk_exe vcxsrv.exe,, 3
+                WinWait, emacs ahk_exe vcxsrv.exe,, 4
                 If ErrorLevel = 0
                 {
                         WinActivate
@@ -30,6 +42,6 @@ If ArgCount <> 0
                         WinActivate, ahk_id %active_id%
                 }
                 Else
-                        MsgBox, emacs が起動していません！
+                        MsgBox, Emacs を開くことができません！
         }
 }
