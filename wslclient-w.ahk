@@ -10,38 +10,16 @@ argCount = %0%
 
 If argCount > 0
 {
-        ; 外部からオプション -c を指定される可能性があるため、オプション -d も
-        ; デフォルトの設定としている
-        options := "-q -d localhost:0.0"
-
         Loop, %argCount%
         {
                 arg := %A_Index%
-                args := args . "'" . arg . "' "
+                args := args . " '" . arg . "'"
         }
 
-        IfWinActive, emacs ahk_exe vcxsrv.exe
-        {
-                RunWait, wsl emacsclient %options% %args%,, Hide
-                If ErrorLevel <> 0
-                        MsgBox, Emacs を開くことができません！
-        }
-        Else
-        {
-                options .= " -c"
+        ; Emacs 以外からコマンドが実行された場合には、新規にフレームを作成する
+        IfWinNotActive, emacs ahk_exe vcxsrv.exe
+                options := "-c"
 
-                WinGet, active_id, ID, A
-                Run, wsl emacsclient %options% %args%,, Hide, pid
-
-                Sleep, 1000
-                WinWait, emacs ahk_exe vcxsrv.exe,, 4
-                If ErrorLevel = 0
-                {
-                        WinActivate
-                        Process, WaitClose, %pid%
-                        WinActivate, ahk_id %active_id%
-                }
-                Else
-                        MsgBox, Emacs を開くことができません！
-        }
+        ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
+        RunWait, wsl $(wslpath -u '%A_ScriptDir%')/emacsclientw.exe %options% %args%,, Hide
 }
