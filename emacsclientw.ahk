@@ -31,6 +31,10 @@ IfWinActive, emacs ahk_exe vcxsrv.exe
 }
 Else
 {
+        ; Emacs のフレームが開いていなければ作成する
+        IfWinNotExist, emacs ahk_exe vcxsrv.exe
+                options .= " -c"
+
         If wait_flg = 0
         {
                 RunWait, wsl emacsclient %options% %args%,, Hide

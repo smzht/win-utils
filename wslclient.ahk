@@ -8,9 +8,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 argCount = %0%
 
-; wait しない
-options := "-n"
-
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
         If argCount = 0
@@ -19,9 +16,9 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
                 Exit
         }
 }
-Else
-        ; フレームを作成する
-        options .= " -c"
+
+; wait しない
+options := "-n"
 
 Loop, %argCount%
 {
