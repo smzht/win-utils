@@ -13,6 +13,7 @@ argCount = %0%
 options := "-q -d localhost:0.0"
 
 wait_flg = 1
+create_flg = 0
 
 Loop, %argCount%
 {
@@ -21,42 +22,72 @@ Loop, %argCount%
 
         If arg = -n
                 wait_flg = 0
+        Else If arg = -c
+                create_flg = 1
 }
 
 IfWinActive, emacs ahk_exe vcxsrv.exe
 {
         RunWait, wsl emacsclient %options% %args%,, Hide
         If ErrorLevel <> 0
+        {
                 MsgBox, Emacs を開くことができません！
+                Exit
+        }
 }
 Else
 {
-        ; Emacs のフレームが開いていなければ作成する
         IfWinNotExist, emacs ahk_exe vcxsrv.exe
                 options .= " -c"
 
         If wait_flg = 0
         {
                 RunWait, wsl emacsclient %options% %args%,, Hide
-                If ErrorLevel = 0
-                        WinActivate, emacs ahk_exe vcxsrv.exe
-                Else
+                If ErrorLevel <> 0
+                {
                         MsgBox, Emacs を開くことができません！
+                        Exit
+                }
+
+                WinActivate, emacs ahk_exe vcxsrv.exe
         }
         Else
         {
                 WinGet, active_id, ID, A
-                Run, wsl emacsclient %options% %args%,, Hide, pid
 
-                Sleep, 1000
-                WinWait, emacs ahk_exe vcxsrv.exe,, 4
-                If ErrorLevel = 0
+                IfWinExist, emacs ahk_exe vcxsrv.exe
                 {
-                        WinActivate
-                        Process, WaitClose, %pid%
-                        WinActivate, ahk_id %active_id%
+                        If create_flg = 0
+                        {
+                                WinActivate, emacs ahk_exe vcxsrv.exe
+                                RunWait, wsl emacsclient %options% %args%,, Hide
+                                If ErrorLevel <> 0
+                                {
+                                        MsgBox, Emacs を開くことができません！
+                                        Exit
+                                }
+                        }
+                        Else
+                        {
+                                Run, wsl emacsclient %options% %args%,, Hide, pid
+                                Sleep, 1000
+                                WinActivate, emacs ahk_exe vcxsrv.exe
+                                Process, WaitClose, %pid%
+                        }
                 }
                 Else
-                        MsgBox, Emacs を開くことができません！
+                {
+                        Run, wsl emacsclient %options% %args%,, Hide, pid
+                        WinWait, emacs ahk_exe vcxsrv.exe,, 3
+                        If ErrorLevel <> 0
+                        {
+                                MsgBox, Emacs を開くことができません！
+                                Exit
+                        }
+                        WinActivate
+                        Process, WaitClose, %pid%
+                }
+
+                WinActivate, ahk_id %active_id%
         }
 }
