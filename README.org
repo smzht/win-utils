@@ -56,7 +56,7 @@ WSL Emacs を終了するためのコマンドです。
 wslemacs-stop.exe
 #+END_EXAMPLE
 
-** ■ wslclient
+** ■ wslclient / emacsclientw
 
 WSL Emacs と連携可能な emacsclient コマンドです。
 
@@ -71,10 +71,10 @@ wslclinet の exe コマンドを新規にインストールした場合、も�
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslclient [-w] [-c] [+line:column] file... # for WSL
-wslclient.exe [options] file...            # no-wait version for Windows
-wslclient-w.exe [options] file...          # wait version for Windows
-emacsclientw.exe [options] file...         # emacsclient command with activate control
+wslclient.exe [options] file...               # no-wait version for Windows
+wslclient-w.exe [options] file...             # wait version for Windows
+emacsclientw.exe [options] file...            # emacsclient command with activate control
+emacsclientw [-n] [-c] [+line:column] file... # for WSL
 #+END_EXAMPLE
 
 Emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
@@ -85,8 +85,7 @@ wslemacs-start.exe で Emacs を起動している場合は、Alt+e で本コマ
 （wslclient.exe は、wslemacs-start.exe と 同じフォルダに格納しておく必要があります。）
 
 wslclient.exe は既に Emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
-また、wslclient-w.exe は Emacs のフレームから起動された時はそのフレームに表示しますが、
-それ以外の場合は常に新しいフレームを作って表示する仕様としています。
+また、wslclient-w.exe は常に新しいフレームを作って表示する仕様としています。
 
 ** ■ winactivate
 

@@ -6,25 +6,24 @@ command_name=$(basename "$0")
 function usage_exit() {
     cat << EOF >&2
 Usage: $command_name
-       $command_name [-w] [-c] [+line:column] file...
+       $command_name [-n] [-c] [+line:column] file...
        $command_name -h
 EOF
     exit $1
 }
 
-wait_flg=0
 options=''
 
-while getopts :hwc opt; do
+while getopts :hnc opt; do
     case $opt in
         h)
             usage_exit 0
             ;;
-        w)
-            wait_flg=1
+        n)
+            options+=' -n'
             ;;
         c)
-            options+='-c'
+            options+=' -c'
             ;;
         \?)
             usage_exit 2
@@ -48,8 +47,4 @@ for arg; do
 done
 set -- "${args[@]}"
 
-if [ $wait_flg -eq 1 ]; then
-    wslclient-w.exe $options "$@"
-else
-    wslclient.exe $options "$@"
-fi
+emacsclientw.exe $options "$@"

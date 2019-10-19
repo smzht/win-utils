@@ -20,7 +20,7 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
         }
 }
 Else
-        ; Emacs のフレームが開いていなければ作成する
+        ; フレームを作成する
         options .= " -c"
 
 Loop, %argCount%
@@ -30,4 +30,4 @@ Loop, %argCount%
 }
 
 ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
-RunWait, wsl $(wslpath -u '%A_ScriptDir%')/emacsclientw.exe %options% %args%,, Hide
+RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
