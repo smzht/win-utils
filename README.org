@@ -64,8 +64,8 @@ Emacs は事前にデーモンモードで起動しておくか、普通に Emac
 
 また、Xサーバとして VcXsrv が起動している必要があります。
 
-wslclinet の exe コマンドを新規にインストールした場合、もしくは更新した場合には、
-一回目のコマンド実行時に正常に動作しないこと（新規にフレームが開くなど）があるようです。
+exe コマンドを新規にインストールした場合、もしくは更新した場合には、一回目のコマンド
+実行時に正常に動作しないこと（新規にフレームが開くなど）があるようです。
 二回目からは正常に動作します。
 
 *** 使用方法
@@ -82,7 +82,8 @@ Emacs や Windows 側に必要となる設定は、以下の説明を参照し�
 - [[https://www49.atwiki.jp/ntemacs/pages/75.html][WSL の emacsclient を Windows から利用するための設定]]
 
 wslemacs-start.exe で Emacs を起動している場合は、Alt+e で本コマンドを起動することもできます。
-（wslclient.exe は、wslemacs-start.exe と 同じフォルダに格納しておく必要があります。）
+（wslclient.exe、emacsclientw.exe は、wslemacs-start.exe と 同じフォルダに格納しておく
+必要があります。）
 
 wslclient.exe は既に Emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
 また、wslclient-w.exe は常に新しいフレームを作って表示する仕様としています。
