@@ -59,7 +59,7 @@ Else
                 {
                         If create_flg = 0
                         {
-                                WinActivate, emacs ahk_exe vcxsrv.exe
+                                WinActivate
                                 RunWait, wsl emacsclient %options% %args%,, Hide
                                 If ErrorLevel <> 0
                                 {
