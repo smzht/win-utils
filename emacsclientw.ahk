@@ -56,12 +56,12 @@ Else
         }
 }
 
-Exit, exit_code
+Exit, %exit_code%
 
 Emacsclient:
         RunWait, wsl emacsclient %options% %args%,, Hide
         If ErrorLevel <> 0
-                exit_code = ErrorLevel
+                exit_code := ErrorLevel
         Return
 
 WinActivate:
