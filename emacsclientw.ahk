@@ -28,11 +28,7 @@ Loop, %arg_count%
 }
 
 IfWinActive, emacs ahk_exe vcxsrv.exe
-{
-        RunWait, wsl emacsclient %options% %args%,, Hide
-        If ErrorLevel <> 0
-                exit_code = ErrorLevel
-}
+        GoSub, Emacsclient
 Else
 {
         IfWinNotExist, emacs ahk_exe vcxsrv.exe
@@ -40,10 +36,7 @@ Else
 
         If wait_flg = 0
         {
-                RunWait, wsl emacsclient %options% %args%,, Hide
-                If ErrorLevel <> 0
-                        exit_code = ErrorLevel
-
+                GoSub, Emacsclient
                 WinActivate, emacs ahk_exe vcxsrv.exe
         }
         Else
@@ -58,16 +51,18 @@ Else
                 }
 
                 SetTimer, WinActivate, %period%
-
-                RunWait, wsl emacsclient %options% %args%,, Hide
-                If ErrorLevel <> 0
-                        exit_code = ErrorLevel
-
+                GoSub, Emacsclient
                 WinActivate, ahk_id %active_id%
         }
 }
 
 Exit, exit_code
+
+Emacsclient:
+        RunWait, wsl emacsclient %options% %args%,, Hide
+        If ErrorLevel <> 0
+                exit_code = ErrorLevel
+        Return
 
 WinActivate:
         WinWait, emacs ahk_exe vcxsrv.exe,, 5
