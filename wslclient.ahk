@@ -6,11 +6,11 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #WinActivateForce
 
-argCount = %0%
+arg_count = %0%
 
 IfWinExist, emacs ahk_exe vcxsrv.exe
 {
-        If argCount = 0
+        If arg_count = 0
         {
                 WinActivate
                 Exit
@@ -20,7 +20,7 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
 ; wait しない
 options := "-n"
 
-Loop, %argCount%
+Loop, %arg_count%
 {
         arg := %A_Index%
         args := args . " '" . arg . "'"
@@ -28,3 +28,5 @@ Loop, %argCount%
 
 ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
 RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
+If ErrorLevel <> 0
+        MsgBox, Emacs を開くことができません！

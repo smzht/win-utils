@@ -6,14 +6,14 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #WinActivateForce
 
-argCount = %0%
+arg_count = %0%
 
-If argCount > 0
+If arg_count > 0
 {
         ; フレームを作成する
         options := "-c"
 
-        Loop, %argCount%
+        Loop, %arg_count%
         {
                 arg := %A_Index%
                 args := args . " '" . arg . "'"
@@ -21,4 +21,6 @@ If argCount > 0
 
         ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
         RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
+        If ErrorLevel <> 0
+                MsgBox, Emacs を開くことができません！
 }

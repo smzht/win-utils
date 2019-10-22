@@ -6,7 +6,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #WinActivateForce
 
-argCount = %0%
+arg_count = %0%
 
 ; 外部からオプション -c を指定される可能性があるため、オプション -d も
 ; デフォルトの設定に追加している
@@ -14,8 +14,9 @@ options := "-q -d localhost:0.0"
 
 wait_flg = 1
 create_flg = 0
+exit_code = 0
 
-Loop, %argCount%
+Loop, %arg_count%
 {
         arg := %A_Index%
         args := args . " '" . arg . "'"
@@ -30,10 +31,7 @@ IfWinActive, emacs ahk_exe vcxsrv.exe
 {
         RunWait, wsl emacsclient %options% %args%,, Hide
         If ErrorLevel <> 0
-        {
-                MsgBox, Emacs を開くことができません！
-                Exit
-        }
+                exit_code = ErrorLevel
 }
 Else
 {
@@ -44,10 +42,7 @@ Else
         {
                 RunWait, wsl emacsclient %options% %args%,, Hide
                 If ErrorLevel <> 0
-                {
-                        MsgBox, Emacs を開くことができません！
-                        Exit
-                }
+                        exit_code = ErrorLevel
 
                 WinActivate, emacs ahk_exe vcxsrv.exe
         }
@@ -55,39 +50,27 @@ Else
         {
                 WinGet, active_id, ID, A
 
-                IfWinExist, emacs ahk_exe vcxsrv.exe
+                period = -100
+                If create_flg = 1
                 {
-                        If create_flg = 0
-                        {
-                                WinActivate
-                                RunWait, wsl emacsclient %options% %args%,, Hide
-                                If ErrorLevel <> 0
-                                {
-                                        MsgBox, Emacs を開くことができません！
-                                        Exit
-                                }
-                        }
-                        Else
-                        {
-                                Run, wsl emacsclient %options% %args%,, Hide, pid
-                                Sleep, 1000
-                                WinActivate, emacs ahk_exe vcxsrv.exe
-                                Process, WaitClose, %pid%
-                        }
+                        IfWinExist, emacs ahk_exe vcxsrv.exe
+                                period = -1000
                 }
-                Else
-                {
-                        Run, wsl emacsclient %options% %args%,, Hide, pid
-                        WinWait, emacs ahk_exe vcxsrv.exe,, 3
-                        If ErrorLevel <> 0
-                        {
-                                MsgBox, Emacs を開くことができません！
-                                Exit
-                        }
-                        WinActivate
-                        Process, WaitClose, %pid%
-                }
+
+                SetTimer, WinActivate, %period%
+
+                RunWait, wsl emacsclient %options% %args%,, Hide
+                If ErrorLevel <> 0
+                        exit_code = ErrorLevel
 
                 WinActivate, ahk_id %active_id%
         }
 }
+
+Exit, exit_code
+
+WinActivate:
+        WinWait, emacs ahk_exe vcxsrv.exe,, 5
+        If ErrorLevel = 0
+                WinActivate
+        Return
