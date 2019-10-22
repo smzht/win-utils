@@ -5,8 +5,7 @@ command_name=$(basename "$0")
 
 function usage_exit() {
     cat << EOF >&2
-Usage: $command_name
-       $command_name [-n] [-c] [+line:column] file...
+Usage: $command_name [-n] [-c] [+line:column] file...
        $command_name -h
 EOF
     exit $1
