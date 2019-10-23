@@ -5,7 +5,7 @@ command_name=$(basename "$0")
 
 function usage_exit() {
     cat << EOF >&2
-Usage: $command_name [-n] [-c] [+line:column] file...
+Usage: $command_name [-c] [-n] [-q] [+line:column] file...
        $command_name -h
 EOF
     exit $1
@@ -13,16 +13,19 @@ EOF
 
 options=''
 
-while getopts :hnc opt; do
+while getopts :hcnq opt; do
     case $opt in
         h)
             usage_exit 0
             ;;
+        c)
+            options+=' -c'
+            ;;
         n)
             options+=' -n'
             ;;
-        c)
-            options+=' -c'
+        q)
+            options+=' -q'
             ;;
         \?)
             usage_exit 2
