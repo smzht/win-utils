@@ -7,9 +7,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #WinActivateForce
 
 arg_count = %0%
-
-; 外部からオプション -c を指定される可能性があるため、オプション -d も
-; デフォルトの設定に追加している
 options := "-d localhost:0.0"
 
 wait_flg = 1
