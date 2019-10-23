@@ -46,6 +46,6 @@ for arg; do
 done
 set -- "${args[@]}"
 
-export EMACSCLIENTW_PID=$BASHPID
+export EMACSCLIENTW_PID=$$
 WSLENV=EMACSCLIENTW_PID
 emacsclientw.exe $options "$@"
