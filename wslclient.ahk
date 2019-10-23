@@ -17,8 +17,7 @@ IfWinExist, emacs ahk_exe vcxsrv.exe
         }
 }
 
-; wait しない
-options := "-n"
+options := "-q -n"
 
 Loop, %arg_count%
 {

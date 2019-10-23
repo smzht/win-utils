@@ -10,8 +10,7 @@ arg_count = %0%
 
 If arg_count > 0
 {
-        ; フレームを作成する
-        options := "-c"
+        options := "-q -c"
 
         Loop, %arg_count%
         {
