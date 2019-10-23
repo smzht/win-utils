@@ -10,7 +10,7 @@ arg_count = %0%
 
 ; 外部からオプション -c を指定される可能性があるため、オプション -d も
 ; デフォルトの設定に追加している
-options := "-q -d localhost:0.0"
+options := "-d localhost:0.0"
 
 wait_flg = 1
 create_flg = 0
@@ -63,7 +63,7 @@ Emacsclient:
         If pid =
                 RunWait, wsl emacsclient %options% %args%,, Hide
         Else
-                RunWait, wsl bash -c "emacsclient %options% %args% < /proc/%pid%/fd/0 > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
+                RunWait, wsl bash -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
         If ErrorLevel <> 0
                 exit_code := ErrorLevel
         Return
