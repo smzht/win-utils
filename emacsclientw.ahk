@@ -59,7 +59,11 @@ Else
 Exit, %exit_code%
 
 Emacsclient:
-        RunWait, wsl emacsclient %options% %args%,, Hide
+        EnvGet, pid, EMACSCLIENTW_PID
+        If pid =
+                RunWait, wsl emacsclient %options% %args%,, Hide
+        Else
+                RunWait, wsl bash -c "emacsclient %options% %args% < /proc/%pid%/fd/0 > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
         If ErrorLevel <> 0
                 exit_code := ErrorLevel
         Return
