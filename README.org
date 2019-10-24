@@ -67,10 +67,10 @@ Emacs は事前にデーモンモードで起動しておくか、普通に Emac
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslclient.exe [options] file...               # no-wait version for Windows
-wslclient-w.exe [options] file...             # wait version for Windows
-emacsclientw.exe [options] file...            # emacsclient command with activate control
-emacsclientw [-n] [-c] [+line:column] file... # for WSL
+wslclient.exe [emacsclient options] file...         # no-wait version for Windows
+wslclient-w.exe [emacsclient options] file...       # wait version for Windows
+emacsclientw.exe [emacsclient options] file...      # emacsclient command with activate control
+emacsclientw [-c] [-n] [-q]  [+line:column] file... # emacsclientw command for WSL
 #+END_EXAMPLE
 
 Emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
@@ -84,18 +84,9 @@ wslemacs-start.exe で Emacs を起動している場合は、Alt+e で本コマ
 wslclient.exe は既に Emacs のフレームがあれば、そのフレーム上に表示する仕様としています。
 また、wslclient-w.exe は常に新しいフレームを作って表示する仕様としています。
 
-*** 注意事項
-
-**** ● exe コマンド初回実行について
-
 exe コマンドを新規にインストールした場合、もしくは更新した場合には、一回目のコマンド
-実行時に正常に動作しないこと（新規にフレームが開くなど）があるようです。
+実行時に正常に動作しないこと（コマンドが二回実行されるなど）があるようです。
 二回目からは正常に動作します。
-
-**** ● ダブルコーテーション、シングルコーテーションを含むファイルについて
-
-ダブルコーテーション、シングルコーテーションを含むファイルは、正常にハンドリング
-できません。制約事項とさせてください。
 
 ** ■ winactivate
 

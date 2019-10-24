@@ -15,11 +15,12 @@ If arg_count > 0
         Loop, %arg_count%
         {
                 arg := %A_Index%
-                args := args . " '" . arg . "'"
+                arg := RegExReplace(arg, """", "\$0")
+                arg := RegExReplace(arg, "\\$", "\$0")
+                args .= " """ . arg . """"
         }
 
-        ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
-        RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
+        RunWait, emacsclientw.exe %options% %args%,, Hide
         If ErrorLevel <> 0
                 MsgBox, Emacs を開くことができません！
 }

@@ -16,6 +16,8 @@ exit_code = 0
 Loop, %arg_count%
 {
         arg := %A_Index%
+        arg := RegExReplace(arg, "\\", "\$0")
+        arg := RegExReplace(arg, "'", "'\''")
         args := args . " '" . arg . "'"
 
         If arg = -n
@@ -57,8 +59,9 @@ Exit, %exit_code%
 
 Emacsclient:
         EnvGet, pid, EMACSCLIENTW_PID
+        args := RegExReplace(args, """", "\$0")
         If pid =
-                RunWait, wsl emacsclient %options% %args%,, Hide
+                RunWait, wsl bash -c "emacsclient %options% %args%",, Hide
         Else
                 RunWait, wsl bash -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
         If ErrorLevel <> 0
