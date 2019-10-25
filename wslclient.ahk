@@ -22,7 +22,7 @@ If arg_count = 0
 Else
 {
         option := RegExReplace(A_ScriptName, "[^-]*([^.]*).*", "$1")
-        if option <>
+        If option <>
                 options .= " " . option
 
         Loop, %arg_count%
