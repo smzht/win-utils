@@ -8,15 +8,14 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 arg_count = %0%
 options := "-d localhost:0.0"
+exit_code = 0
 
 wait_flg = 1
 create_flg = 0
-exit_code = 0
 
 Loop, %arg_count%
 {
         arg := %A_Index%
-        arg := RegExReplace(arg, "\\", "\$0")
         arg := RegExReplace(arg, "'", "'\''")
         args := args . " '" . arg . "'"
 
@@ -58,8 +57,9 @@ Else
 Exit, %exit_code%
 
 Emacsclient:
-        EnvGet, pid, EMACSCLIENTW_PID
+        args := RegExReplace(args, "\\", "\$0")
         args := RegExReplace(args, """", "\$0")
+        EnvGet, pid, EMACSCLIENTW_PID
         If pid =
                 RunWait, wsl bash -c "emacsclient %options% %args%",, Hide
         Else
