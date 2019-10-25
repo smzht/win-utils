@@ -18,10 +18,10 @@ Loop, %arg_count%
         arg := RegExReplace(arg, "'", "'\''")
         args := args . " '" . arg . "'"
 
-        If RegExMatch(arg, "-.*n")
+        If RegExMatch(arg, "^-.*n")
                 wait_flg = 0
 
-        If RegExMatch(arg, "-.*c")
+        If RegExMatch(arg, "^-.*c")
                 create_flg = 1
 }
 
