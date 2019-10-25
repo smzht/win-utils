@@ -7,26 +7,37 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #WinActivateForce
 
 arg_count = %0%
+options := "-q"
 
-IfWinExist, emacs ahk_exe vcxsrv.exe
+If arg_count = 0
 {
-        If arg_count = 0
-        {
+        IfWinExist, emacs ahk_exe vcxsrv.exe
                 WinActivate
-                Exit
+        Else
+        {
+                options .= " -c -n"
+                GoSub, Emacsclient
         }
 }
-
-options := "-q -n"
-
-Loop, %arg_count%
+Else
 {
-        arg := %A_Index%
-        arg := RegExReplace(arg, """", "\$0")
-        arg := RegExReplace(arg, "\\$", "\$0")
-        args .= " """ . arg . """"
+        option := RegExReplace(A_ScriptName, "[^-]*([^.]*).*", "$1")
+        if option <>
+                options .= " " . option
+
+        Loop, %arg_count%
+        {
+                arg := %A_Index%
+                arg := RegExReplace(arg, """", "\$0")
+                arg := RegExReplace(arg, "\\$", "\$0")
+                args .= " """ . arg . """"
+        }
+        GoSub, Emacsclient
 }
 
-RunWait, emacsclientw.exe %options% %args%,, Hide
-If ErrorLevel <> 0
-        MsgBox, Emacs を開くことができません！
+Exit
+
+Emacsclient:
+        RunWait, emacsclientw.exe %options% %args%,, Hide
+        If ErrorLevel <> 0
+                MsgBox, Emacs を開くことができません！

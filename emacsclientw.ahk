@@ -8,7 +8,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 arg_count = %0%
 options := "-d localhost:0.0"
-exit_code = 0
 
 wait_flg = 1
 create_flg = 0
@@ -19,9 +18,10 @@ Loop, %arg_count%
         arg := RegExReplace(arg, "'", "'\''")
         args := args . " '" . arg . "'"
 
-        If arg = -n
+        If RegExMatch(arg, "-.*n")
                 wait_flg = 0
-        Else If arg = -c
+
+        If RegExMatch(arg, "-.*c")
                 create_flg = 1
 }
 
@@ -59,13 +59,14 @@ Exit, %exit_code%
 Emacsclient:
         args := RegExReplace(args, "\\", "\$0")
         args := RegExReplace(args, """", "\$0")
+
         EnvGet, pid, EMACSCLIENTW_PID
         If pid =
                 RunWait, wsl bash -c "emacsclient %options% %args%",, Hide
         Else
                 RunWait, wsl bash -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
-        If ErrorLevel <> 0
-                exit_code := ErrorLevel
+
+        exit_code := ErrorLevel
         Return
 
 WinActivate:
