@@ -28,9 +28,8 @@ Else
         Loop, %arg_count%
         {
                 arg := %A_Index%
-                arg := RegExReplace(arg, """", "\$0")
-                arg := RegExReplace(arg, "\\$", "\$0")
-                args .= " """ . arg . """"
+                arg := RegExReplace(arg, "'", "'\''")
+                args := args . " '" . arg . "'"
         }
         GoSub, Emacsclient
 }
@@ -38,6 +37,7 @@ Else
 Exit
 
 Emacsclient:
-        RunWait, emacsclientw.exe %options% %args%,, Hide
+        ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
+        RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
         If ErrorLevel <> 0
                 MsgBox, Emacs を開くことができません！
