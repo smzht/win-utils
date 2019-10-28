@@ -21,6 +21,7 @@ If arg_count = 0
 }
 Else
 {
+        ; サフィックスを除くファイル名のハイフン以降をオプションとして取り込む
         option := RegExReplace(A_ScriptName, "[^-]*([^.]*).*", "$1")
         If option <>
                 options .= " " . option
@@ -28,8 +29,13 @@ Else
         Loop, %arg_count%
         {
                 arg := %A_Index%
-                arg := RegExReplace(arg, "'", "'\''")
-                args := args . " '" . arg . "'"
+
+                ; ダブルコーテーションの前もしくは引数最後の￥サインの並びを全て二重化する
+                arg := RegExReplace(arg, "(\\+)(""|$)", "$1$0")
+                ; ダブルコーテーションをエスケープする
+                arg := RegExReplace(arg, """", "\$0")
+
+                args .= " """ . arg . """"
         }
         GoSub, Emacsclient
 }
@@ -37,7 +43,6 @@ Else
 Exit
 
 Emacsclient:
-        ; 引数のエスケープ処理をうまく対処するために、wsl.exe 経由で exe コマンドを実行している
-        RunWait, wsl "$(wslpath -u '%A_ScriptDir%')"/emacsclientw.exe %options% %args%,, Hide
+        RunWait, emacsclientw.exe %options% %args%,, Hide
         If ErrorLevel <> 0
                 MsgBox, Emacs を開くことができません！

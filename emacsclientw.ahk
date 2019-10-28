@@ -15,14 +15,17 @@ create_flg = 0
 Loop, %arg_count%
 {
         arg := %A_Index%
-        arg := RegExReplace(arg, "'", "'\''")
-        args := args . " '" . arg . "'"
 
         If RegExMatch(arg, "^-.*n")
                 wait_flg = 0
 
         If RegExMatch(arg, "^-.*c")
                 create_flg = 1
+
+        ; シングルコーテーションをエスケープする
+        arg := RegExReplace(arg, "'", "'\''")
+
+        args .= " '" . arg . "'"
 }
 
 IfWinActive, emacs ahk_exe vcxsrv.exe
