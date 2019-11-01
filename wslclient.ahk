@@ -29,12 +29,11 @@ Else
         Loop, %arg_count%
         {
                 arg := %A_Index%
-
                 ; ダブルコーテーションの前もしくは引数最後の￥サインの並びを全て二重化する
                 arg := RegExReplace(arg, "(\\+)(""|$)", "$1$0")
                 ; ダブルコーテーションをエスケープする
                 arg := RegExReplace(arg, """", "\$0")
-
+                ; 引数をダブルコーテーションで括って連結する
                 args .= " """ . arg . """"
         }
         GoSub, Emacsclient
