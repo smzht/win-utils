@@ -49,8 +49,6 @@ for arg; do
 done
 set -- "${args[@]}"
 
-if [[ ! "$options" =~ '-q' ]]; then
-    export EMACSCLIENTW_PID=$$
-    WSLENV=EMACSCLIENTW_PID
-fi
+export EMACSCLIENTW_PID=$$
+WSLENV=EMACSCLIENTW_PID
 emacsclientw.exe $options "$@"
