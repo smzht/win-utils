@@ -1,0 +1,54 @@
+#!/bin/bash
+# -*- mode: sh; coding: utf-8-unix -*-
+
+command_name=$(basename "$0")
+
+function usage_exit() {
+    cat << EOF >&2
+Usage: $command_name [-c] [-n] [-q] [+line:column] file...
+       $command_name -h
+EOF
+    exit $1
+}
+
+options=''
+
+while getopts :hcnq opt; do
+    case $opt in
+        h)
+            usage_exit 0
+            ;;
+        c)
+            options+=' -c'
+            ;;
+        n)
+            options+=' -n'
+            ;;
+        q)
+            options+=' -q'
+            ;;
+        \?)
+            usage_exit 2
+            ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+# 以下の set で始まる行までの処理は、Windows 10 1903 より古いバージョンの OS で必要な設定
+# （Windows 10 1903 より古いバージョンの OS では、exe コマンドが VolFs 上のパスをカレント
+# 　パスとして動作できないため、指定したファイルのパスを絶対パスに変換する必要がある）
+args=()
+for arg; do
+    if [[ "$arg" =~ ^[+-] ]]; then
+        args+=("$arg")
+    else
+        # シンボリックリンクを解決しない絶対パスに変換する（このため、readlink を使っていない）
+        args+=("$(echo "$(cd $(dirname "$arg") && pwd)/$(basename "$arg")" | sed -r "s_^/+_/_")")
+    fi
+done
+set -- "${args[@]}"
+
+export EMACSCLIENTW_PID=$$
+WSLENV=EMACSCLIENTW_PID
+emacsclientw.exe $options "$@"
