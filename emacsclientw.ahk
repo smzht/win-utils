@@ -32,8 +32,14 @@ IfWinActive, emacs ahk_exe vcxsrv.exe
         GoSub, Emacsclient
 Else
 {
-        IfWinNotExist, emacs ahk_exe vcxsrv.exe
-                options .= " -c"
+        If create_flg = 0
+        {
+                IfWinNotExist, emacs ahk_exe vcxsrv.exe
+                {
+                        options .= " -c"
+                        create_flg = 1
+                }
+        }
 
         If wait_flg = 0
         {
