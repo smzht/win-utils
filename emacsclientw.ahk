@@ -34,6 +34,8 @@ Else
 {
         If create_flg = 0
         {
+                ; Emacs のフレームが開いていなければ、create-frame のオプションを追加する
+                ; （この設定は、素の emacsclient とは異なる仕様のものとなる）
                 IfWinNotExist, emacs ahk_exe vcxsrv.exe
                 {
                         options .= " -c"
