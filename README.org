@@ -72,9 +72,9 @@ Emacs は事前にデーモンモードで起動しておくか、普通に Emac
 *** 使用方法
 
 #+BEGIN_EXAMPLE
-wslclient [emacsclient options] file...        # emacsclient command for WSL
-wslclient.exe [emacsclient options] file...    # emacsclient command for Windows
-emacsclientw.exe [emacsclient options] file... # base command
+wslclient [emacsclient options] file...        # emacsclient command for WSL (frontend command)
+wslclient.exe [emacsclient options] file...    # emacsclient command for Windows (frontend command)
+emacsclientw.exe [emacsclient options] file... # emacsclient command with activate control (base command)
 #+END_EXAMPLE
 
 Emacs や Windows 側に必要となる設定は、以下の説明を参照してください。
