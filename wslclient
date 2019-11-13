@@ -3,4 +3,4 @@
 
 export EMACSCLIENTW_PID=$$
 WSLENV=EMACSCLIENTW_PID
-emacsclientw.exe $options "$@"
+emacsclientw.exe "$@"
