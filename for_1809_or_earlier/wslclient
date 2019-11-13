@@ -40,15 +40,15 @@ shift $((OPTIND - 1))
 # 　パスとして動作できないため、指定したファイルのパスを絶対パスに変換する必要がある）
 args=()
 for arg; do
-    if [[ "$arg" =~ ^[+-] ]]; then
+    if [[ "$arg" =~ ^[+] ]]; then
         args+=("$arg")
     else
         # シンボリックリンクを解決しない絶対パスに変換する（このため、readlink を使っていない）
-        args+=("$(echo "$(cd $(dirname "$arg") && pwd)/$(basename "$arg")" | sed -r "s_^/+_/_")")
+        args+=("$(echo "$(cd $(dirname -- "$arg") && pwd)/$(basename -- "$arg")" | sed -r "s_^/+_/_")")
     fi
 done
 set -- "${args[@]}"
 
 export EMACSCLIENTW_PID=$$
 WSLENV=EMACSCLIENTW_PID
-emacsclientw.exe $options "$@"
+emacsclientw.exe $options -- "$@"
