@@ -9,18 +9,37 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 arg_count = %0%
 options := "-d localhost:0.0"
 
-wait_flg = 1
+tty_flg = 0
+nowait_flg = 0
 create_flg = 0
 
 Loop, %arg_count%
 {
         arg := %A_Index%
 
-        If RegExMatch(arg, "^-.*n")
-                wait_flg = 0
-
-        If RegExMatch(arg, "^-.*c")
-                create_flg = 1
+        If RegExMatch(arg, "^--")
+        {
+                If (arg = "--tty")
+                        tty_flg = 1
+                Else If (arg = "--no-wait")
+                        nowait_flg = 1
+                Else If (arg = "--create-frame")
+                        create_flg = 1
+        }
+        Else
+        {
+                If (arg = "-nw")
+                        tty_flg = 1
+                Else
+                {
+                        If RegExMatch(arg, "^-.*t")
+                                tty_flg = 1
+                        If RegExMatch(arg, "^-.*n")
+                                nowait_flg = 1
+                        If RegExMatch(arg, "^-.*c")
+                                create_flg = 1
+                }
+        }
 
         ; シングルコーテーションをエスケープする
         arg := RegExReplace(arg, "'", "'\''")
@@ -28,40 +47,45 @@ Loop, %arg_count%
         args .= " '" . arg . "'"
 }
 
-IfWinActive, emacs ahk_exe vcxsrv.exe
+If (tty_flg = 1 && nowait_flg = 0)
         GoSub, Emacsclient
 Else
 {
-        If (create_flg = 0)
-        {
-                ; Emacs のフレームが開いていなければ、create-frame のオプションを追加する
-                ; （この設定は、素の emacsclient とは異なる仕様のものとなる）
-                IfWinNotExist, emacs ahk_exe vcxsrv.exe
-                {
-                        options .= " -c"
-                        create_flg = 1
-                }
-        }
-
-        If (wait_flg = 0)
-        {
+        IfWinActive, emacs ahk_exe vcxsrv.exe
                 GoSub, Emacsclient
-                WinActivate, emacs ahk_exe vcxsrv.exe
-        }
         Else
         {
-                WinGet, active_id, ID, A
-
-                period = -100
-                If (create_flg = 1)
+                If (create_flg = 0)
                 {
-                        IfWinExist, emacs ahk_exe vcxsrv.exe
-                                period = -1000
+                        ; Emacs のフレームが開いていなければ、create-frame のオプションを追加する
+                        ; （この設定は、素の emacsclient とは異なる仕様のものとなる）
+                        IfWinNotExist, emacs ahk_exe vcxsrv.exe
+                        {
+                                options .= " -c"
+                                create_flg = 1
+                        }
                 }
 
-                SetTimer, WinActivate, %period%
-                GoSub, Emacsclient
-                WinActivate, ahk_id %active_id%
+                If (nowait_flg = 1)
+                {
+                        GoSub, Emacsclient
+                        WinActivate, emacs ahk_exe vcxsrv.exe
+                }
+                Else
+                {
+                        WinGet, active_id, ID, A
+
+                        period = -100
+                        If (create_flg = 1)
+                        {
+                                IfWinExist, emacs ahk_exe vcxsrv.exe
+                                        period = -1000
+                        }
+
+                        SetTimer, WinActivate, %period%
+                        GoSub, Emacsclient
+                        WinActivate, ahk_id %active_id%
+                }
         }
 }
 
