@@ -32,7 +32,7 @@ IfWinActive, emacs ahk_exe vcxsrv.exe
         GoSub, Emacsclient
 Else
 {
-        If create_flg = 0
+        If (create_flg = 0)
         {
                 ; Emacs のフレームが開いていなければ、create-frame のオプションを追加する
                 ; （この設定は、素の emacsclient とは異なる仕様のものとなる）
@@ -43,7 +43,7 @@ Else
                 }
         }
 
-        If wait_flg = 0
+        If (wait_flg = 0)
         {
                 GoSub, Emacsclient
                 WinActivate, emacs ahk_exe vcxsrv.exe
@@ -53,7 +53,7 @@ Else
                 WinGet, active_id, ID, A
 
                 period = -100
-                If create_flg = 1
+                If (create_flg = 1)
                 {
                         IfWinExist, emacs ahk_exe vcxsrv.exe
                                 period = -1000
@@ -72,7 +72,7 @@ Emacsclient:
         args := RegExReplace(args, """", "\$0")
 
         EnvGet, pid, EMACSCLIENTW_PID
-        If pid =
+        If (pid = "")
                 RunWait, wsl bash -c "emacsclient %options% %args%",, Hide
         Else
                 RunWait, wsl bash -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
@@ -82,6 +82,6 @@ Emacsclient:
 
 WinActivate:
         WinWait, emacs ahk_exe vcxsrv.exe,, 5
-        If ErrorLevel = 0
+        If (ErrorLevel = 0)
                 WinActivate
         Return

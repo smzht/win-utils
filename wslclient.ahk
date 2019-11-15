@@ -9,7 +9,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 arg_count = %0%
 options := "-q"
 
-If arg_count = 0
+If (arg_count = 0)
 {
         IfWinExist, emacs ahk_exe vcxsrv.exe
                 WinActivate
@@ -23,7 +23,7 @@ Else
 {
         ; サフィックスを除くファイル名のハイフン以降をオプションとして取り込む
         option := RegExReplace(A_ScriptName, "[^-]*([^.]*).*", "$1")
-        If option <>
+        If (option <> "")
                 options .= " " . option
 
         Loop, %arg_count%
@@ -43,5 +43,5 @@ Exit
 
 Emacsclient:
         RunWait, emacsclientw.exe %options% %args%,, Hide
-        If ErrorLevel <> 0
+        If (ErrorLevel <> 0)
                 MsgBox, Emacs を開くことができません！
