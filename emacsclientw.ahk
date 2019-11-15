@@ -26,17 +26,17 @@ Loop, %arg_count%
                 Else If (arg = "--create-frame")
                         create_flg = 1
         }
-        Else
+        Else If RegExMatch(arg, "^-")
         {
                 If (arg = "-nw")
                         tty_flg = 1
                 Else
                 {
-                        If RegExMatch(arg, "^-.*t")
+                        If RegExMatch(arg, "t")
                                 tty_flg = 1
-                        If RegExMatch(arg, "^-.*n")
+                        If RegExMatch(arg, "n")
                                 nowait_flg = 1
-                        If RegExMatch(arg, "^-.*c")
+                        If RegExMatch(arg, "c")
                                 create_flg = 1
                 }
         }
