@@ -78,17 +78,27 @@ Else
                 }
                 Else
                 {
+                        ; emacsclient を起動したウィンドウのウィンドウハンドルを退避する
                         WinGet, active_id, ID, A
 
+                        ; Emacs のウィンドウのアクティベート待ちを開始するまでの待ち時間を設定する
+                        ; （マイナスは一度だけ実行する場合の指定方法）
                         period = -100
                         If (create_flg = 1)
                         {
+                                ; 既に emacs が起動している場合は、新しく開く Emacs のウィンドウをアクティベート
+                                ; したいので、待ち時間を長くする設定する
                                 IfWinExist, emacs ahk_exe vcxsrv.exe
                                         period = -1000
                         }
 
+                        ; Emacs のウィンドウをアクティベートするためのタイマーを起動する
                         SetTimer, WinActivate, %period%
+
+                        ; emacsclient を起動する
                         GoSub, Emacsclient
+
+                        ; emacsclient が終了したら、emacsclient を起動したウィンドウをアクティブに戻す
                         WinActivate, ahk_id %active_id%
                 }
         }
