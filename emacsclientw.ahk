@@ -7,7 +7,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #WinActivateForce
 
 arg_count = %0%
-options := ""
 
 tty_flg = 0
 nowait_flg = 0
