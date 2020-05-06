@@ -8,6 +8,12 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 arg_count = %0%
 
+RunWait, wsl bash -c "wsl.exe -l -v 2> /dev/null | tr -d '\0' | tr -d '\r' | grep '^*' | grep -q '2$'",, Hide
+If (ErrorLevel = 0)
+        options := "-d $(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0"
+Else
+        options := "-d localhost:0.0"
+
 tty_flg = 0
 nowait_flg = 0
 create_flg = 0
@@ -91,12 +97,6 @@ Else
 Exit, %exit_code%
 
 Emacsclient:
-        RunWait, wsl bash -c "wsl.exe -l -v 2> /dev/null | tr -d '\0' | tr -d '\r' | grep '^*' | grep -q '2$'",, Hide
-        If (ErrorLevel = 0)
-                options := "-d $(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0"
-        Else
-                options := "-d localhost:0.0"
-
         args := RegExReplace(args, "\\", "\$0")
         args := RegExReplace(args, """", "\$0")
 
