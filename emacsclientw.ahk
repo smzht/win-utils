@@ -105,7 +105,7 @@ Emacsclient:
         {
                 RunWait, wsl bash -c "wsl.exe -l -v 2> /dev/null | sed 's/[^[:print:]]//g' | grep '^*' | grep -q '2$'",, Hide
                 If (ErrorLevel = 0)
-                        options .= " -d $(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0"
+                        options .= " -d $(hostname).mshome.net:0.0"
                 Else
                         options .= " -d localhost:0.0"
         }
