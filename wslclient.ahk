@@ -9,9 +9,12 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 arg_count = %0%
 options := "-q"
 
+GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
+
 If (arg_count = 0)
 {
-        IfWinExist, emacs ahk_exe vcxsrv.exe
+        IfWinExist, ahk_group emacs
                 WinActivate
         Else
         {

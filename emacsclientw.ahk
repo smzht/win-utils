@@ -12,6 +12,9 @@ tty_flg = 0
 nowait_flg = 0
 create_flg = 0
 
+GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
+
 Loop, %arg_count%
 {
         arg := %A_Index%
@@ -50,7 +53,7 @@ If (tty_flg = 1 && nowait_flg = 0)
         GoSub, Emacsclient
 Else
 {
-        IfWinActive, emacs ahk_exe vcxsrv.exe
+        IfWinActive, ahk_group emacs
                 GoSub, Emacsclient
         Else
         {
@@ -58,7 +61,7 @@ Else
                 {
                         ; Emacs のフレームが開いていなければ、create-frame のオプションを追加する
                         ; （この設定は、素の emacsclient とは異なる仕様のものとなる）
-                        IfWinNotExist, emacs ahk_exe vcxsrv.exe
+                        IfWinNotExist, ahk_group emacs
                         {
                                 options .= " -c"
                                 create_flg = 1
@@ -68,7 +71,7 @@ Else
                 If (nowait_flg = 1)
                 {
                         GoSub, Emacsclient
-                        WinActivate, emacs ahk_exe vcxsrv.exe
+                        WinActivate, ahk_group emacs
                 }
                 Else
                 {
@@ -82,7 +85,7 @@ Else
                         {
                                 ; 既に emacs が起動している場合は、新しく開く Emacs のウィンドウをアクティベート
                                 ; したいので、待ち時間を長くする設定する
-                                IfWinExist, emacs ahk_exe vcxsrv.exe
+                                IfWinExist, ahk_group emacs
                                         period = -1000
                         }
 
@@ -101,29 +104,20 @@ Else
 Exit, %exit_code%
 
 Emacsclient:
-        If (create_flg = 1)
-        {
-                RunWait, wsl bash -c "wsl.exe -l -v 2> /dev/null | sed 's/[^[:print:]]//g' | grep '^*' | grep -q '2$'",, Hide
-                If (ErrorLevel = 0)
-                        options .= " -d $(hostname).mshome.net:0.0"
-                Else
-                        options .= " -d localhost:0.0"
-        }
-
         args := RegExReplace(args, "\\", "\$0")
         args := RegExReplace(args, """", "\$0")
 
         EnvGet, pid, EMACSCLIENTW_PID
         If (pid = "")
-                RunWait, wsl bash -c "emacsclient %options% %args%",, Hide
+                RunWait, wsl bash -i -c "emacsclient %options% %args%",, Hide
         Else
-                RunWait, wsl bash -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
+                RunWait, wsl bash -i -c "emacsclient %options% %args% > /proc/%pid%/fd/1 2> /proc/%pid%/fd/2",, Hide
 
         exit_code := ErrorLevel
         Return
 
 WinActivate:
-        WinWait, emacs ahk_exe vcxsrv.exe,, 5
+        WinWait, ahk_group emacs,, 5
         If (ErrorLevel = 0)
                 WinActivate
         Return

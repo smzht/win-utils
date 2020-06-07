@@ -7,6 +7,9 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #UseHook
 SetWorkingDir %A_ScriptDir%
 
+GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
+
 OnExit, ExitSub
 
 Menu, Tray, NoStandard
@@ -53,7 +56,7 @@ ExitSub:
                 ExitApp
 
 !e::
-        IfWinActive, emacs ahk_exe vcxsrv.exe
+        IfWinActive, ahk_group emacs
                 Send, %A_ThisHotkey%
         Else
                 Run, wslclient.exe,, Hide
