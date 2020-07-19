@@ -50,7 +50,20 @@ Emacs を起動するようにしてください。
 なお、パスフレーズの入力を回避する方法としては、ssh-agent-wsl を使う方法があるようです。
 詳しくは、以下のサイトを参照してください。
 
+- https://github.com/rupor-github/ssh-agent-wsl
 - https://laboradian.com/use-ssh-agent-wsl/
+
+⇒ （2020/07/19 追記）同じ開発者から新しいプロジェクトがリリースされていました。
+
+- https://github.com/rupor-github/wsl-ssh-agent
+- https://hnakamur.github.io/blog/2020/03/06/setup-wsl-ssh-agent/
+
+使ってみましたが、wsl-ssh-agent はまだ WSL2 で利用できないようですので、ssh-aget-wsl を使い
+続けることにしました。以下の設定を ~/.bash_profile に追加するのが良いと思います。
+
+#+BEGIN_EXAMPLE
+eval $(<ssh-agent-wsl コマンドを置く Windows のパス>/ssh-agent-wsl -a ~/.ssh/ssh-agent-wsl.sock -r)
+#+END_EXAMPLE
 
 ** ■ wslemacs-stop
 
