@@ -13,6 +13,7 @@ nowait_flg = 0
 create_flg = 0
 
 GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe XWin_MobaX.exe
 GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
 
 Loop, %arg_count%
