@@ -10,7 +10,12 @@ arg_count = %0%
 options := "-q"
 
 GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe XWin.exe
 GroupAdd, emacs, emacs ahk_exe XWin_MobaX.exe
+GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.14.5.exe
+GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.16.3.exe
+GroupAdd, emacs, emacs ahk_exe Xming.exe
+GroupAdd, emacs, emacs ahk_exe X410.exe
 GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
 
 If (arg_count = 0)
