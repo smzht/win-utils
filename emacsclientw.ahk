@@ -15,6 +15,7 @@ create_flg = 0
 GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
 GroupAdd, emacs, emacs ahk_exe XWin.exe
 GroupAdd, emacs, emacs ahk_exe XWin_MobaX.exe
+GroupAdd, emacs, emacs ahk_exe XWin_MobaX_1.16.3.exe
 GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.14.5.exe
 GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.16.3.exe
 GroupAdd, emacs, emacs ahk_exe Xming.exe
