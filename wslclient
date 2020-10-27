@@ -1,6 +1,17 @@
 #!/bin/bash
 # -*- mode: sh; coding: utf-8-unix -*-
 
+# WSL2 では、UNC パスをマウントしているマウントポイント配下がカレントディレクトリの状態で
+# Windows の exe コマンドを実行するとエラー終了する。この対策のため、引数を絶対パスに変換し、
+# cd してから emacsclientw.exe を実行する。
+
+for arg; do
+    args+=("$(readlink -m -- "$arg")")
+done
+set -- "${args[@]}"
+
+cd
+
 export EMACSCLIENTW_PID=$$
 WSLENV=EMACSCLIENTW_PID
 emacsclientw.exe "$@"
