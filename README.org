@@ -82,7 +82,8 @@ WSL Emacs と連携可能な emacsclient コマンドです。
 
 Emacs は事前にデーモンモードで起動しておくか、普通に Emacs を立ち上げておいてください。
 
-また、Xサーバとして VcXsrv が起動している必要があります。
+また、Xサーバとして emacsclientw.ahk の GroupAdd で定義されているいずれかの Xサーバが
+起動している必要があります。
 
 *** 使用方法
 
