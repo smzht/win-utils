@@ -29,7 +29,7 @@ Menu, Tray, Add, Kill Emacs, KillEmacs
 
 Menu, Tray, Check, Hide Console
 
-RunWait, wsl bash -l -i -c "cd ~; exec emacs --fg-daemon",, Hide, pid
+RunWait, wsl bash -l -i -c "cd; exec emacs --fg-daemon",, Hide, pid
 ExitApp
 
 OpenEmacs:
