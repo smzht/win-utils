@@ -45,7 +45,6 @@ ShowConsole:
 
 HideConsole:
         WinHide ahk_pid %pid%
-        WinActivate, ahk_pid %pid%
         Menu, Tray, UnCheck, Show Console
         Menu, Tray, Check, Hide Console
         Return
