@@ -21,6 +21,7 @@ GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.16.3.exe
 GroupAdd, emacs, emacs ahk_exe Xming.exe
 GroupAdd, emacs, emacs ahk_exe X410.exe
 GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
+GroupAdd, emacs, emacs ahk_exe mstsc.exe
 
 Loop, %arg_count%
 {
