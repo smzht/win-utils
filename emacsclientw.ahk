@@ -13,6 +13,7 @@ nowait_flg = 0
 create_flg = 0
 
 GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
+GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv.exe
 GroupAdd, emacs, emacs ahk_exe XWin.exe
 GroupAdd, emacs, emacs ahk_exe XWin_MobaX.exe
 GroupAdd, emacs, emacs ahk_exe XWin_MobaX_1.16.3.exe
