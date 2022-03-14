@@ -6,6 +6,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 
 #WinActivateForce
 
+DetectHiddenWindows, On
+
 arg_count = %0%
 options := "-q"
 
