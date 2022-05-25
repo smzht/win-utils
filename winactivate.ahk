@@ -16,7 +16,7 @@ filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0")
 #WinActivateForce
 SetTitleMatchMode, RegEx
 
-WinGet, ids, list, (^| )(%filename1%|%filename2%)( |$)
+WinGet, ids, list, (^| - )(%filename1%|%filename2%)( - |$)
 Loop, %ids%
 {
         this_id := ids%A_Index%
