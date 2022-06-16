@@ -21,10 +21,8 @@ Loop, %ids%
 {
         this_id := ids%A_Index%
         IfWinNotActive, ahk_id %this_id%
-        {
                 WinActivate, ahk_id %this_id%
-                Exit, 0
-        }
+        Exit, 0
 }
 
 Exit, 1
