@@ -7,23 +7,21 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 #WinActivateForce
 
 DetectHiddenWindows, On
+SetTitleMatchMode, RegEx
 
 arg_count = %0%
 options := "-q"
 
-GroupAdd, emacs, emacs ahk_exe vcxsrv.exe
-GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv.exe
-GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv_lowdpi.exe
-GroupAdd, emacs, emacs ahk_exe XWin.exe
-GroupAdd, emacs, emacs ahk_exe XWin_MobaX.exe
-GroupAdd, emacs, emacs ahk_exe XWin_MobaX_1.16.3.exe
-GroupAdd, emacs, emacs ahk_exe XWin_MobaX_1.20.4.exe
-GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.14.5.exe
-GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_1.16.3.exe
-GroupAdd, emacs, emacs ahk_exe Xming.exe
-GroupAdd, emacs, emacs ahk_exe X410.exe
-GroupAdd, emacs, emacs ahk_exe Xpra-Launcher.exe
-GroupAdd, emacs, emacs ahk_exe msrdc.exe
+GroupAdd, emacs, emacs ahk_exe vcxsrv\.exe
+GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv\.exe
+GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv_lowdpi\.exe
+GroupAdd, emacs, emacs ahk_exe XWin\.exe
+GroupAdd, emacs, emacs ahk_exe XWin_MobaX_.*\.exe
+GroupAdd, emacs, emacs ahk_exe XWin_Cygwin_.*\.exe
+GroupAdd, emacs, emacs ahk_exe Xming\.exe
+GroupAdd, emacs, emacs ahk_exe X410\.exe
+GroupAdd, emacs, emacs ahk_exe Xpra-Launcher\.exe
+GroupAdd, emacs, emacs ahk_exe mstsc\.exe
 
 If (arg_count = 0)
 {
