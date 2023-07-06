@@ -20,9 +20,14 @@ WinGet, ids, list, (^| - )(%filename1%|%filename2%)( - |$)
 Loop, %ids%
 {
         this_id := ids%A_Index%
-        IfWinNotActive, ahk_id %this_id%
-                WinActivate, ahk_id %this_id%
-        Exit, 0
+
+        result := DllCall("IsWindowVisible", "Ptr", this_id)
+        if (result = 1)
+        {
+                IfWinNotActive, ahk_id %this_id%
+                        WinActivate, ahk_id %this_id%
+                Exit, 0
+        }
 }
 
 Exit, 1
