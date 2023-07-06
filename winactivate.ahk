@@ -16,7 +16,8 @@ filename2 := RegExReplace(filename2, "[.*?+[{|()^$\\]", "\$0")
 #WinActivateForce
 SetTitleMatchMode, RegEx
 
-WinGet, ids, list, (^| - )(%filename1%|%filename2%)( - |$)
+; 正規表現に「.?」を入れているのは、フォトアプリがタイトルに見えない文字を追加するため
+WinGet, ids, list, (^| - )(%filename1%|%filename2%)( .?- |$)
 Loop, %ids%
 {
         this_id := ids%A_Index%
