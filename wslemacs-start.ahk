@@ -9,16 +9,16 @@ SetWorkingDir %A_ScriptDir%
 
 SetTitleMatchMode, RegEx
 
-GroupAdd, emacs, emacs ahk_exe vcxsrv\.exe
-GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv\.exe
-GroupAdd, emacs, emacs ahk_exe GWSL_vcxsrv_lowdpi\.exe
-GroupAdd, emacs, emacs ahk_exe XWin\.exe
-GroupAdd, emacs, emacs ahk_exe XWin_MobaX.*\.exe
-GroupAdd, emacs, emacs ahk_exe XWin_Cygwin.*\.exe
-GroupAdd, emacs, emacs ahk_exe Xming\.exe
-GroupAdd, emacs, emacs ahk_exe X410\.exe
-GroupAdd, emacs, emacs ahk_exe Xpra-Launcher\.exe
-GroupAdd, emacs, emacs ahk_exe mstsc\.exe
+GroupAdd, emacs, emacs- ahk_exe vcxsrv\.exe
+GroupAdd, emacs, emacs- ahk_exe GWSL_vcxsrv\.exe
+GroupAdd, emacs, emacs- ahk_exe GWSL_vcxsrv_lowdpi\.exe
+GroupAdd, emacs, emacs- ahk_exe XWin\.exe
+GroupAdd, emacs, emacs- ahk_exe XWin_MobaX.*\.exe
+GroupAdd, emacs, emacs- ahk_exe XWin_Cygwin.*\.exe
+GroupAdd, emacs, emacs- ahk_exe Xming\.exe
+GroupAdd, emacs, emacs- ahk_exe X410\.exe
+GroupAdd, emacs, emacs- ahk_exe Xpra-Launcher\.exe
+GroupAdd, emacs, emacs- ahk_exe mstsc\.exe
 
 OnExit, ExitSub
 
