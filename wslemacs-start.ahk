@@ -18,7 +18,7 @@ GroupAdd, emacs, emacs- ahk_exe XWin_Cygwin.*\.exe
 GroupAdd, emacs, emacs- ahk_exe Xming\.exe
 GroupAdd, emacs, emacs- ahk_exe X410\.exe
 GroupAdd, emacs, emacs- ahk_exe Xpra-Launcher\.exe
-GroupAdd, emacs, emacs- ahk_exe mstsc\.exe
+GroupAdd, emacs, emacs- ahk_exe msrdc\.exe
 
 OnExit, ExitSub
 
